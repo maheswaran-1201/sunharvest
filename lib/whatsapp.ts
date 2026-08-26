@@ -21,9 +21,15 @@ export function generateWhatsAppOrderMessage(
   customer: CustomerDetails,
   items: CartItem[]
 ): string {
+  let totalAmount = 0;
   const itemsText = items
-    .map((item) => `${item.product.name}\nQuantity: ${item.quantity}`)
-    .join('\n\n');
+    .map((item) => {
+      const price = item.product.price || 0;
+      const subtotal = price * item.quantity;
+      totalAmount += subtotal;
+      return `${item.product.name} (₹${price} × ${item.quantity}) = ₹${subtotal}`;
+    })
+    .join('\n');
 
   const noteBlock = customer.note && customer.note.trim() !== ''
     ? `\nAdditional Note:\n${customer.note.trim()}\n`
@@ -39,17 +45,17 @@ Delivery Address:
 ${customer.address.trim()}
 ${customer.city.trim()}, ${customer.state.trim()} - ${customer.pinCode.trim()}
 
-Order Details:
+Order Items:
 ${itemsText}
 
-Order Summary:
-Pricing: To be confirmed
+Total Amount: ₹${totalAmount}
 Delivery: To be confirmed
 ${noteBlock}
 Please confirm this order and share the next steps for payment and delivery.
 
 Thank you for choosing SunHarvest.
-Dried Naturally. Kept Perfectly.`;
+
+A Taste of Indian Summers.`;
 
   return message;
 }

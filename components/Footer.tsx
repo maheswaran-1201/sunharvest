@@ -110,8 +110,8 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-sans text-sun-sand/70">
           <p>© {new Date().getFullYear()} SunHarvest. All rights reserved.</p>
-          <p className="font-serif italic text-sun-sand">
-            Dried Naturally. Kept Perfectly.
+          <p className="font-serif italic text-sun-sand font-medium">
+            A Taste of Indian Summers
           </p>
         </div>
       </div>

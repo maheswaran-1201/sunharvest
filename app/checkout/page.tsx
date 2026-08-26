@@ -259,34 +259,50 @@ export default function CheckoutPage() {
 
                   {/* Products list */}
                   <div className="space-y-4 max-h-72 overflow-y-auto pr-1">
-                    {cart.map((item) => (
-                      <div key={item.product.id} className="flex items-center justify-between text-xs py-2 border-b border-sun-border/40">
-                        <div>
-                          <span className="font-serif font-bold text-sun-forest block text-sm">
-                            {item.product.name}
-                          </span>
-                          <span className="text-sun-olive font-sans">
-                            Quantity: {item.quantity}
+                    {cart.map((item) => {
+                      const itemPrice = item.product.price || 0;
+                      const itemTotal = itemPrice * item.quantity;
+                      return (
+                        <div key={item.product.id} className="flex items-center justify-between text-xs py-2 border-b border-sun-border/40">
+                          <div>
+                            <span className="font-serif font-bold text-sun-forest block text-sm">
+                              {item.product.name}
+                            </span>
+                            <span className="text-sun-olive font-sans">
+                              Quantity: {item.quantity} (₹{itemPrice} each)
+                            </span>
+                          </div>
+                          <span className="font-serif font-bold text-sun-forest text-sm">
+                            ₹{itemTotal}
                           </span>
                         </div>
-                        <span className="font-mono text-sun-gold font-semibold">
-                          Price — Coming Soon
-                        </span>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
 
                   {/* Summary Box */}
-                  <div className="pt-4 border-t border-sun-border space-y-2 text-xs font-sans text-sun-charcoal">
-                    <div className="flex justify-between">
-                      <span>Pricing:</span>
-                      <span className="font-mono font-bold text-sun-gold">To be confirmed</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Delivery:</span>
-                      <span className="font-mono font-bold text-sun-olive">To be confirmed</span>
-                    </div>
-                  </div>
+                  {(() => {
+                    const subtotal = cart.reduce(
+                      (sum, item) => sum + (item.product.price || 0) * item.quantity,
+                      0
+                    );
+                    return (
+                      <div className="pt-4 border-t border-sun-border space-y-2 text-xs font-sans text-sun-charcoal">
+                        <div className="flex justify-between py-1">
+                          <span>Subtotal:</span>
+                          <span className="font-serif font-bold text-sun-forest text-sm">₹{subtotal}</span>
+                        </div>
+                        <div className="flex justify-between py-1">
+                          <span>Delivery:</span>
+                          <span className="font-sans text-xs text-sun-olive font-semibold">Calculated on WhatsApp</span>
+                        </div>
+                        <div className="flex justify-between py-2 border-t border-sun-border font-serif text-base font-bold text-sun-forest">
+                          <span>Estimated Total:</span>
+                          <span className="text-sun-forest">₹{subtotal}</span>
+                        </div>
+                      </div>
+                    );
+                  })()}
 
                   {/* WhatsApp Info */}
                   <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-950 text-xs leading-relaxed flex items-start gap-2.5">

@@ -303,8 +303,8 @@ export default function Navbar() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
 
-                <p className="text-center text-xs text-sun-olive font-sans">
-                  SunHarvest — Dried Naturally. Kept Perfectly.
+                <p className="text-center text-xs text-sun-olive font-sans font-medium">
+                  SunHarvest — A Taste of Indian Summers
                 </p>
               </div>
             </motion.div>

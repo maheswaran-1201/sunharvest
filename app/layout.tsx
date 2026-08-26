@@ -3,7 +3,7 @@ import './globals.css';
 import { ShopProvider } from '@/context/ShopContext';
 
 export const metadata: Metadata = {
-  title: 'SunHarvest — Dried Naturally. Kept Perfectly.',
+  title: 'SunHarvest — A Taste of Indian Summers',
   description:
     'Connecting Indian agricultural produce with the power of sunshine to create nutrition-focused food concepts for everyday life.',
   keywords: [

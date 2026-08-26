@@ -69,71 +69,79 @@ export default function CartPage() {
               
               {/* Left Column: Cart Items List */}
               <div className="lg:col-span-8 space-y-6">
-                {cart.map((item) => (
-                  <div
-                    key={item.product.id}
-                    className="bg-sun-surface rounded-3xl p-6 border border-sun-border shadow-soft-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
-                  >
-                    <div className="flex items-center gap-4">
-                      {/* Product Symbol Box */}
-                      <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-sun-sand via-sun-cream to-sun-surface border border-sun-border flex items-center justify-center text-3xl shrink-0">
-                        {item.product.slug === 'iron-plus'
-                          ? '🌾'
-                          : item.product.slug === 'mother-plus'
-                          ? '🌱'
-                          : '🥭'}
-                      </div>
+                {cart.map((item) => {
+                  const itemPrice = item.product.price || 0;
+                  const itemTotal = itemPrice * item.quantity;
+                  return (
+                    <div
+                      key={item.product.id}
+                      className="bg-sun-surface rounded-3xl p-6 border border-sun-border shadow-soft-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
+                    >
+                      <div className="flex items-center gap-4">
+                        {/* Product Image Thumbnail */}
+                        <div className="w-20 h-20 rounded-2xl border border-sun-border overflow-hidden shrink-0 shadow-sm bg-sun-sand/40">
+                          <img
+                            src={item.product.image}
+                            alt={item.product.name}
+                            className="w-full h-full object-cover object-center"
+                          />
+                        </div>
 
-                      <div>
-                        <span className="text-[10px] font-mono uppercase tracking-wider text-sun-olive bg-sun-sand/60 px-2 py-0.5 rounded">
-                          {item.product.category}
-                        </span>
-                        <h3 className="font-serif text-xl font-bold text-sun-forest mt-1">
-                          <Link href={`/products/${item.product.slug}`} className="hover:underline">
-                            {item.product.name}
-                          </Link>
-                        </h3>
-                        <p className="font-serif italic text-xs text-sun-olive mt-0.5">
-                          {item.product.positioning}
-                        </p>
-                        <div className="mt-2 text-xs font-mono font-semibold text-sun-gold">
-                          Price — Coming Soon
+                        <div>
+                          <span className="text-[10px] font-mono uppercase tracking-wider text-sun-olive bg-sun-sand/60 px-2 py-0.5 rounded font-semibold">
+                            {item.product.category}
+                          </span>
+                          <h3 className="font-serif text-xl font-bold text-sun-forest mt-1">
+                            <Link href={`/products/${item.product.slug}`} className="hover:underline">
+                              {item.product.name}
+                            </Link>
+                          </h3>
+                          <div className="mt-1 flex items-center gap-3">
+                            <span className="font-serif text-base font-extrabold text-sun-forest">
+                              ₹{itemPrice}
+                            </span>
+                            <span className="text-xs text-sun-olive">× {item.quantity}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    {/* Quantity Controls & Remove */}
-                    <div className="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto pt-4 sm:pt-0 border-t sm:border-t-0 border-sun-border/60">
-                      <div className="flex items-center border border-sun-border rounded-xl bg-white">
+                      {/* Quantity Controls & Item Total */}
+                      <div className="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto pt-4 sm:pt-0 border-t sm:border-t-0 border-sun-border/60">
+                        <div className="flex items-center border border-sun-border rounded-xl bg-white">
+                          <button
+                            onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
+                            className="px-3 py-1.5 text-sun-forest hover:bg-sun-sand/50 rounded-l-xl font-bold"
+                            aria-label="Decrease quantity"
+                          >
+                            <Minus className="w-3.5 h-3.5" />
+                          </button>
+                          <span className="px-3 py-1.5 font-mono text-xs font-bold text-sun-forest">
+                            {item.quantity}
+                          </span>
+                          <button
+                            onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
+                            className="px-3 py-1.5 text-sun-forest hover:bg-sun-sand/50 rounded-r-xl font-bold"
+                            aria-label="Increase quantity"
+                          >
+                            <Plus className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+
+                        <div className="font-serif text-lg font-bold text-sun-forest min-w-[70px] text-right">
+                          ₹{itemTotal}
+                        </div>
+
                         <button
-                          onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-                          className="px-3 py-1.5 text-sun-forest hover:bg-sun-sand/50 rounded-l-xl font-bold"
-                          aria-label="Decrease quantity"
+                          onClick={() => removeItem(item.product.id)}
+                          className="p-2 text-sun-charcoal/50 hover:text-rose-600 transition-colors"
+                          aria-label="Remove item"
                         >
-                          <Minus className="w-3.5 h-3.5" />
-                        </button>
-                        <span className="px-3 py-1.5 font-mono text-xs font-bold text-sun-forest">
-                          {item.quantity}
-                        </span>
-                        <button
-                          onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-                          className="px-3 py-1.5 text-sun-forest hover:bg-sun-sand/50 rounded-r-xl font-bold"
-                          aria-label="Increase quantity"
-                        >
-                          <Plus className="w-3.5 h-3.5" />
+                          <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
-
-                      <button
-                        onClick={() => removeItem(item.product.id)}
-                        className="p-2 text-sun-charcoal/50 hover:text-rose-600 transition-colors"
-                        aria-label="Remove item"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
 
                 <div className="pt-2">
                   <Link
@@ -152,25 +160,37 @@ export default function CartPage() {
                   Order Summary
                 </h3>
 
-                <div className="space-y-3 text-xs font-sans text-sun-charcoal">
-                  <div className="flex justify-between py-1">
-                    <span>Total Products Selected:</span>
-                    <span className="font-mono font-bold text-sun-forest">{cart.length} item(s)</span>
-                  </div>
-                  <div className="flex justify-between py-1">
-                    <span>Pricing Status:</span>
-                    <span className="font-mono font-bold text-sun-gold">To be confirmed</span>
-                  </div>
-                  <div className="flex justify-between py-1">
-                    <span>Delivery Status:</span>
-                    <span className="font-mono font-bold text-sun-olive">To be confirmed</span>
-                  </div>
-                </div>
+                {(() => {
+                  const subtotal = cart.reduce(
+                    (sum, item) => sum + (item.product.price || 0) * item.quantity,
+                    0
+                  );
+                  return (
+                    <div className="space-y-3 text-sm font-sans text-sun-charcoal">
+                      <div className="flex justify-between py-1">
+                        <span>Items Selected:</span>
+                        <span className="font-mono font-bold text-sun-forest">{cart.length} product(s)</span>
+                      </div>
+                      <div className="flex justify-between py-1">
+                        <span>Subtotal:</span>
+                        <span className="font-serif font-bold text-sun-forest">₹{subtotal}</span>
+                      </div>
+                      <div className="flex justify-between py-1">
+                        <span>Delivery Charge:</span>
+                        <span className="font-sans text-xs text-sun-olive font-semibold">Calculated on WhatsApp</span>
+                      </div>
+                      <div className="flex justify-between py-2 border-t border-sun-border font-serif text-lg font-bold text-sun-forest">
+                        <span>Estimated Total:</span>
+                        <span className="text-sun-forest">₹{subtotal}</span>
+                      </div>
+                    </div>
+                  );
+                })()}
 
                 <div className="p-4 rounded-2xl bg-sun-sand/60 border border-sun-border flex items-start gap-2.5 text-xs text-sun-forest leading-relaxed">
                   <Sun className="w-4 h-4 text-sun-gold shrink-0 mt-0.5" />
                   <div>
-                    <strong>WhatsApp Confirmation:</strong> Pricing will be confirmed directly through WhatsApp order placement.
+                    <strong>WhatsApp Confirmation:</strong> Final order confirmation and delivery details will be processed through WhatsApp.
                   </div>
                 </div>
 

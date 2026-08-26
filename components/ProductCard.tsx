@@ -135,11 +135,13 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
       <div className="pt-4 border-t border-sun-border/60 flex flex-col space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1.5">
-            <Sun className="w-4 h-4 text-sun-gold" />
-            <span className="font-mono text-xs font-bold text-sun-forest uppercase tracking-wider">
-              Price — Coming Soon
+            <span className="font-serif text-xl font-bold text-sun-forest">
+              {product.price ? `₹${product.price}` : 'Price — Coming Soon'}
             </span>
           </div>
+          <span className="text-[11px] font-sans font-semibold text-sun-forest bg-sun-sand/80 px-3 py-1 rounded-full border border-sun-border/60">
+            Solar Dried
+          </span>
         </div>
 
         <div className="grid grid-cols-2 gap-2 pt-1">

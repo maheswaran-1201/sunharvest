@@ -8,6 +8,7 @@ export interface Product {
   description: string;
   ingredients: string[];
   positioning: string;
+  perfectFor?: string[];
   disclaimer?: string;
   developmentNote?: string;
   image: string;
@@ -39,7 +40,7 @@ export const PRODUCTS: Product[] = [
     disclaimer:
       'SunHarvest Iron+ is designed as a complementary food concept and is not intended to diagnose, treat or cure anaemia.',
     image: '/images/products/iron-plus.jpg',
-    price: null,
+    price: 199,
     available: true,
     ctaText: 'Explore Iron+',
   },
@@ -65,7 +66,7 @@ export const PRODUCTS: Product[] = [
     disclaimer:
       'SunHarvest Mother+ is positioned as a food-based maternal nutrition concept and is not intended to treat, prevent or diagnose clinical conditions.',
     image: '/images/products/mother-plus.jpg',
-    price: null,
+    price: 199,
     available: true,
     ctaText: 'Explore Mother+',
   },
@@ -87,9 +88,81 @@ export const PRODUCTS: Product[] = [
     disclaimer:
       'SunHarvest Grow+ is a complementary food concept. It does not treat or prevent stunting, wasting, malnutrition, nutrient deficiencies, or disease.',
     image: '/images/products/grow-plus.jpg',
-    price: null,
+    price: 199,
     available: true,
     ctaText: 'Explore Grow+',
+  },
+  {
+    id: 'sh-dried-mango',
+    name: 'Sun Harvest Dried Mango',
+    slug: 'dried-mango',
+    target: 'Everyday Snackers',
+    category: 'Solar Dried Fruit',
+    concept:
+      'Naturally dried mango with a rich tropical flavor and satisfying chewy texture. A simple way to enjoy the taste of ripe mango beyond the harvest season.',
+    description:
+      'SunHarvest Dried Mango brings the vibrant taste of ripe mango into a convenient, naturally preserved form. Carefully prepared and dried to retain its characteristic color, flavor and texture, it makes a versatile snack for everyday moments.\n\nEnjoy it straight from the pack, add it to breakfast bowls and trail mixes, or use it to bring a naturally fruity touch to desserts and recipes.',
+    ingredients: ['Ripe Sun Mango', '100% Natural Solar Dried'],
+    positioning: 'Naturally dried with rich tropical flavor and satisfying chewy texture.',
+    perfectFor: ['Snacking', 'Breakfast Bowls', 'Trail Mixes', 'Desserts', 'Recipes'],
+    image: '/images/products/dried-mango.jpg',
+    price: 149,
+    available: true,
+    ctaText: 'Explore Dried Mango',
+  },
+  {
+    id: 'sh-dried-tomato',
+    name: 'Sun Harvest Dried Tomato',
+    slug: 'dried-tomato',
+    target: 'Cooking & Meals',
+    category: 'Solar Dried Vegetable',
+    concept:
+      'Rich, savory and naturally intense, SunHarvest Dried Tomato adds depth and character to everyday meals.',
+    description:
+      'SunHarvest Dried Tomato captures the concentrated flavor of ripe tomatoes in a convenient dried form. Its naturally rich, savory taste makes it an excellent ingredient for adding depth to a variety of dishes.\n\nUse it in pasta, salads, sandwiches, breads, sauces or homemade recipes whenever you want a burst of tomato flavor.',
+    ingredients: ['Ripe Vine Tomatoes', '100% Natural Solar Dried'],
+    positioning: 'Rich, savory, and naturally intense tomato flavor for everyday meals.',
+    perfectFor: ['Pasta', 'Salads', 'Sandwiches', 'Sauces', 'Breads', 'Cooking'],
+    image: '/images/products/dried-tomato.jpg',
+    price: 99,
+    available: true,
+    ctaText: 'Explore Dried Tomato',
+  },
+  {
+    id: 'sh-dried-carrot',
+    name: 'Sun Harvest Dried Carrot',
+    slug: 'dried-carrot',
+    target: 'Everyday Cooking',
+    category: 'Solar Dried Vegetable',
+    concept:
+      'Naturally dried carrot with a delicate sweetness and convenient texture, ready to bring color and flavor to everyday cooking.',
+    description:
+      'SunHarvest Dried Carrot transforms fresh carrots into a convenient dried ingredient while retaining their familiar earthy sweetness and vibrant character.\n\nEasy to store and simple to incorporate into meals, dried carrot can be used in soups, curries, rice dishes, noodles and other everyday recipes.',
+    ingredients: ['Fresh Carrots', '100% Natural Solar Dried'],
+    positioning: 'Delicate sweetness and convenient texture, ready for everyday cooking.',
+    perfectFor: ['Soups', 'Curries', 'Rice Dishes', 'Noodles', 'Snacks', 'Recipes'],
+    image: '/images/products/dried-carrot.jpg',
+    price: 99,
+    available: true,
+    ctaText: 'Explore Dried Carrot',
+  },
+  {
+    id: 'sh-dried-vegetable-mix',
+    name: 'Sun Harvest Dried Vegetable Mix',
+    slug: 'dried-vegetable-mix',
+    target: 'Quick Meals & Recipes',
+    category: 'Solar Dried Vegetable Blend',
+    concept:
+      'A colorful combination of dried vegetables, bringing variety, texture and convenience to everyday meals.',
+    description:
+      'SunHarvest Dried Vegetable Mix brings together a selection of vegetables in a convenient dried format. With a colorful mix of shapes, textures and natural flavors, it is designed to make everyday cooking more versatile and convenient.\n\nAdd it to soups, rice dishes, noodles, curries or quick meal preparations for an easy way to incorporate a variety of vegetables into your recipes.',
+    ingredients: ['Peas', 'Carrots', 'Corn', 'Green Beans', '100% Natural Solar Dried'],
+    positioning: 'A colorful combination bringing variety, texture and convenience.',
+    perfectFor: ['Soups', 'Rice Dishes', 'Noodles', 'Curries', 'Quick Meals', 'Recipe Mixes'],
+    image: '/images/products/dried-vegetable-mix.jpg',
+    price: 149,
+    available: true,
+    ctaText: 'Explore Veg Mix',
   },
 ];
 
