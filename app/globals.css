@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:wght@300..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-serif: 'Playfair Display', Cormorant Garamond, Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+    --color-sun-forest: #23452B;
+    --color-sun-olive: #536B35;
+    --color-sun-gold: #D99A28;
+    --color-sun-orange: #E99A32;
+    --color-sun-sand: #F5EBD8;
+    --color-sun-cream: #FCF8EF;
+    --color-sun-charcoal: #25271F;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #FCF8EF;
+    color: #25271F;
+    font-family: var(--font-sans), 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  body {
+    background-color: #FCF8EF;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FCF8EF;
+}
+::-webkit-scrollbar-thumb {
+  background: #D99A28;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #23452B;
+}
+
+/* Grain texture overlay for rich editorial depth */
+.bg-grain {
+  background-image: radial-gradient(rgba(35, 69, 43, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Custom editorial link line effect */
+.editorial-link {
+  position: relative;
+  display: inline-block;
+}
+.editorial-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #D99A28;
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+.editorial-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
